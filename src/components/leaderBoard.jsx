@@ -2,15 +2,22 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import * as ReactBootStrap from 'react-bootstrap'
 
+/*async componentDidMount() {
+  let debits = await axios.get('https://moj-api.herokuapp.com/debits');
+  this.setState({ debits: debits.data });
+  let credits = await axios.get('https://moj-api.herokuapp.com/credits');
+  this.setState({ credits: credits.data });
+} */
+
 function LeaderBoard() {
   const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
+	const [score, setEmail] = useState("");
 	const handleOnSubmit = async (e) => {
 		e.preventDefault();
 		let result = await fetch(
 		'http://localhost:5000/register', {
 			method: "post",
-			body: JSON.stringify({ name, email }),
+			body: JSON.stringify({ name, score }),
 			headers: {
 				'Content-Type': 'application/json'
 			}
@@ -22,6 +29,7 @@ function LeaderBoard() {
 			setEmail("");
 			setName("");
 		}
+  
 	}
   return (
     <div className="leaderBoard">
@@ -90,10 +98,10 @@ function LeaderBoard() {
         </ReactBootStrap.Table>
         <h2>Submit your score here! </h2>
         <form action="">
-				<input type="text" placeholder="name"
+				<input type="text" placeholder="User Name"
 				value={name} onChange={(e) => setName(e.target.value)} />
-				<input type="email" placeholder="email"
-				value={email} onChange={(e) => setEmail(e.target.value)} />
+				<input type="number" placeholder="Score"
+				value={score} onChange={(e) => setEmail(e.target.value)} />
 				<button type="submit"
 				onClick={handleOnSubmit}>submit</button>
 			</form>

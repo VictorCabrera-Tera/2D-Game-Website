@@ -6,7 +6,7 @@ function Navigation() {
   <div className="navigation">
     <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container">
-        <NavLink className="navbar-brand" to="/capstone-site">
+        <NavLink className="navbar-brand" to="/capstone_new_site">
           GROUP 4 GAME
         </NavLink>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,32 +16,32 @@ function Navigation() {
   <div className="collapse navbar-collapse" id="navbarText">
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
-        <NavLink className="nav-link" to="/capstone-site">
+        <NavLink className="nav-link" to="/capstone_new_site">
           Home
         <span className="sr-only">(current)</span>
         </NavLink>
       </li>
 
       <li className="nav-item">
-        <NavLink className="nav-link" to="capstone-site/download">
+        <NavLink className="nav-link" to="capstone_new_site/download">
           Download
         </NavLink>
       </li>
 
       <li className="nav-item">
-        <NavLink className="nav-link" to="/capstone-site/about">
+        <NavLink className="nav-link" to="/capstone_new_site/about">
           How to Play
         </NavLink>
       </li>
 
       <li className="nav-item">
-        <NavLink className="nav-link" to="/capstone-site/leaderBoard">
+        <NavLink className="nav-link" to="/capstone_new_site/leaderBoard">
           Leader Board
         </NavLink>
       </li>
 
       <li className="nav-item">
-        <NavLink className="nav-link" to="/capstone-site/contact">
+        <NavLink className="nav-link" to="/capstone_new_site/contact">
           Contact
         </NavLink>
       </li>
