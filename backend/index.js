@@ -1,11 +1,29 @@
+require('dotenv').config();
+
+//console.log(process.env.API_HOST);
+const scores = [
+	{
+		name: "someDude17",
+		score: 6578,	
+	},
+	{
+		name: "someDude18",
+		score: 6678,	
+	},
+	{
+		name: "someDude18",
+		score: 6579,	
+	},
+]
+
 // To connect with your mongoDB database
-const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://Intero:Kidbluegod456@cluster0.kolbh.mongodb.net/yourDB-name', {
-	dbName: 'yourDB-name',
+const mongoose = require("mongoose");
+mongoose.connect("mongodb+srv://Intero:Kidbluegod456@cluster0.kolbh.mongodb.net/your_Score", {
+	dbName: 'your_Score',
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 }, err => err ? console.log(err) :
-	console.log('Connected to yourDB-name database'));
+	console.log("Connected to your_Score database"));
 
 // Schema for users of app
 const UserSchema = new mongoose.Schema({
@@ -16,28 +34,30 @@ const UserSchema = new mongoose.Schema({
 	score: {
 		type: Number,
 		required: true,
-		unique: true,
 	},
 	date: {
 		type: Date,
 		default: Date.now,
 	},
 });
-const User = mongoose.model('users', UserSchema);
+const User = mongoose.model("users", UserSchema);
 User.createIndexes();
 
 // For backend and express
-const express = require('express');
+const express = require("express");
 const app = express();
 const cors = require("cors");
 console.log("App listen at port 5000");
 app.use(express.json());
 app.use(cors());
 app.get("/", (req, resp) => {
+	User.find({})
+	.then((items) => resp.json(items))
+	.catch((err) => console.log(err));
+	//resp.send("App is Working");
 
-	resp.send("App is Working");
 	// You can check backend is working or not by
-	// entering http://loacalhost:5000
+	// entering http://localhost:5000
 	
 	// If you see App is working means
 	// backend working properly
@@ -60,4 +80,6 @@ app.post("/register", async (req, resp) => {
 		resp.send("Something Went Wrong");
 	}
 });
-app.listen(5000);
+app.listen(5000, function(){
+	console.log("server is running...");
+});
