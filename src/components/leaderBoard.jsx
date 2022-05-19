@@ -8,6 +8,56 @@ import { Button} from 'react-bootstrap'
   this.setState({ debits: debits.data });
   let credits = await axios.get('https://moj-api.herokuapp.com/credits');
   this.setState({ credits: credits.data });
+  
+  {(name,scores).map(scores => <div> this is your score {(name,scores).score} this is your name {(name,scores).name}</div>)}
+
+   useEffect(() => {
+    fetch("http://localhost:5000/")
+      .then((res) => res.json())
+      .then((jsonRes) => (setName,setEmail)(jsonRes));
+  }, []); 
+
+
+  useEffect(() => {
+    fetch("http://localhost:5000/")
+      .then((res) => res.json())
+      .then((jsonRes) => console.log(jsonRes));
+  }, [setEmail]); 
+
+  const [scores, setEmail] = useState([
+    {
+      name: "",
+      score: "",
+    },
+  ]);
+  const [name, setName] = useState([
+    {
+      name: "",
+      score: "",
+    },
+  ]);
+  
+  const [name, setName] = useState("")
+  const [score, setEmail] = useState("")
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    let result = await fetch(
+    'http://localhost:5000/register', {
+      method: "post",
+      body: JSON.stringify({ name, score}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    result = await result.json();
+    console.warn(result);
+    if (result) {
+      alert("Data saved succesfully");
+      setEmail("");
+      setName("");
+    }
+ 
 } */
 
 function LeaderBoard() {
@@ -36,6 +86,10 @@ function LeaderBoard() {
       .then((res) => res.json())
       .then((jsonRes) => console.log(jsonRes));
   }, [setEmail]); 
+
+  const [user, setuser] = useState("")
+  const [high, sethigh] = useState("")
+
   return (
     <div className="leaderBoard">
       <div class="align-items-center my-5">

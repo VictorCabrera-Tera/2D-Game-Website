@@ -18,12 +18,12 @@ const scores = [
 
 // To connect with your mongoDB database
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://Intero:Kidbluegod456@cluster0.kolbh.mongodb.net/your_Score", {
-	dbName: 'your_Score',
+mongoose.connect("mongodb+srv://Intero:Kidbluegod456@cluster0.kolbh.mongodb.net/new_scores", {
+	dbName: 'new_scores',
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 }, err => err ? console.log(err) :
-	console.log("Connected to your_Score database"));
+	console.log("Connected to new_scores database"));
 
 // Schema for users of app
 const UserSchema = new mongoose.Schema({
