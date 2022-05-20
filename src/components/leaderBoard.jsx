@@ -1,7 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import * as ReactBootStrap from 'react-bootstrap'
-import { Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 /*async componentDidMount() {
   let debits = await axios.get('https://moj-api.herokuapp.com/debits');
@@ -56,40 +56,37 @@ import { Button} from 'react-bootstrap'
       alert("Data saved succesfully");
       setEmail("");
       setName("");
+
+       <h1>Mi Casa</h1>
+      <p>This is my house y&apos;all!</p>
+      {(name,scores).map(scores => <div> this is your score {(name,scores).score} this is your name {(name,scores).name}</div>)}
     }
- 
+ unique: true,
 } */
 
 function LeaderBoard() {
-  const [scores, setEmail] = useState([
-    {
-      name: "",
-      score: "",
-    },
-  ]);
-  const [name, setName] = useState([
-    {
-      name: "",
-      score: "",
-    },
-  ]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/")
-      .then((res) => res.json())
-      .then((jsonRes) => (setName,setEmail)(jsonRes));
-  }, []); 
+  const [name, setName] = useState("");
+  const [score, setScore] = useState("");
 
-
-  useEffect(() => {
-    fetch("http://localhost:5000/")
-      .then((res) => res.json())
-      .then((jsonRes) => console.log(jsonRes));
-  }, [setEmail]); 
-
-  const [user, setuser] = useState("")
-  const [high, sethigh] = useState("")
-
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    let result = await fetch(
+      'http://localhost:5000/register', {
+      method: "post",
+      body: JSON.stringify({ name, score }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    result = await result.json();
+    console.warn(result);
+    if (result) {
+      alert("Data saved succesfully");
+      setScore("");
+      setName("");
+    }
+  }
   return (
     <div className="leaderBoard">
       <div class="align-items-center my-5">
@@ -156,22 +153,15 @@ function LeaderBoard() {
           </tbody>
         </ReactBootStrap.Table>
         <h2>Submit your score here! </h2>
-        <div className="col">
-      <h1>Mi Casa</h1>
-      <p>This is my house y&apos;all!</p>
-      {(name,scores).map(scores => <div> this is your score {(name,scores).score} this is your name {(name,scores).name}</div>)}
-    </div>
-     {/* <Button variant = "success">button</Button>   {(name,score).map(score => <div>{(name,score).score}</div>)}  
-     <form>
-				<input type="text" placeholder="User Name"
-				value={name} onChange={(e) => setName(e.target.value)} />
-				<input type="number" placeholder="Score"
-				value={score} onChange={(e) => setEmail(e.target.value)} />
-				<button type="submit"
-				onClick={handleOnSubmit}>submit</button>
-  </form> */}
+        <form action="">
+          <input type="text" placeholder="User Name"
+            value={name} onChange={(e) => setName(e.target.value)} />
+          <input type="number" placeholder="Your Score"
+            value={score} onChange={(e) => setScore(e.target.value)} />
+          <button type="submit"
+            onClick={handleOnSubmit}>submit</button>
+        </form>
       </div>
-      
     </div>
   );
 }
