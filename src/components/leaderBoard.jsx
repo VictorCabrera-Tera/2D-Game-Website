@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import * as ReactBootStrap from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 
+//This was for viewing the scoreboard but never got it to work while posting to database
 /*async componentDidMount() {
   let debits = await axios.get('https://moj-api.herokuapp.com/debits');
   this.setState({ debits: debits.data });
